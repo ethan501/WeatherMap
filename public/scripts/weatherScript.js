@@ -1,21 +1,21 @@
 const Http = new XMLHttpRequest();
 
-navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
-  enableHighAccuracy: true
-})
+// navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
+//   enableHighAccuracy: true
+// })
 
-function successLocation(position) {
-  console.log(position)
-  // setupMap([position.coords.longitude, position.coords.latitude])
-}
+// function successLocation(position) {
+//   console.log(position)
+//   // setupMap([position.coords.longitude, position.coords.latitude])
+// }
 
-function errorLocation() {
+// function errorLocation() {
 
-}
+// }
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiamV0cHJvIiwiYSI6ImNrdDI5bnVwejBuMHIzMnA4ZWh1endyazEifQ.nD0Hsw-eP3f8h1HDDMEGVg';
 
-// function setupMap(center) {
+
   const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/satellite-v9', // style URL
@@ -30,7 +30,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiamV0cHJvIiwiYSI6ImNrdDI5bnVwejBuMHIzMnA4ZWh1e
     map.setFog({}); // Set the default atmosphere style
   });
 
-// }
+
 
 map.on('click', function (e) {
 
