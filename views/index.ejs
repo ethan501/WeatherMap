@@ -5,19 +5,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Live Weather Map</title>
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='styles/styles.css' rel='stylesheet' />
+    <link rel="icon" type="image/x-icon" href="media/images/favicon.ico">
 
 </head>
 
 <body>
-    <h1>I have done it. Feast your eyes upon my work:</h1>
 
-    <div id='map' style='width: 800px; height: 800px;'></div>
+
+    <div id='map'></div>
+    <div id="menu">
+        <h2>
+            Live Weather Map
+        </h2>
+        <p>Click anywhere to get live weather updates</p>
+        <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" checked="checked">
+        <!-- See a list of Mapbox-hosted public styles at -->
+        <!-- https://docs.mapbox.com/api/maps/styles/#mapbox-styles -->
+        <label for="satellite-v9">Satellite</label>
+        <input id="light-v10" type="radio" name="rtoggle" value="light">
+        <label for="light-v10">Light</label>
+        <input id="dark-v10" type="radio" name="rtoggle" value="dark">
+        <label for="dark-v10">Dark</label>
+
+        <input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors">
+        <label for="outdoors-v11">Outdoors</label>
+
+    </div>
+
     <script src="scripts/weatherScript.js">
-        
+
     </script>
 
 

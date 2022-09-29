@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#map {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.mapboxgl-popup-content {
+    background-color: #f3d47edc;
+}
+
+#menu {
+    position: absolute;
+    background-color: #ffe9abb6;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    width: fit-content;
+    text-align: center;
+}
