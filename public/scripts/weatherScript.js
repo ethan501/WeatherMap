@@ -27,7 +27,7 @@ const map = new mapboxgl.Map({
 
 });
 map.on('style.load', () => {
-  map.setFog({'space-color': '#D2D9D9'}); // Set the default atmosphere style
+  map.setFog({}); // Set the default atmosphere style
 });
 
 
