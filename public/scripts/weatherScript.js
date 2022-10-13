@@ -16,19 +16,19 @@ const Http = new XMLHttpRequest();
 mapboxgl.accessToken = 'pk.eyJ1IjoiamV0cHJvIiwiYSI6ImNrdDI5bnVwejBuMHIzMnA4ZWh1endyazEifQ.nD0Hsw-eP3f8h1HDDMEGVg';
 
 
-  const map = new mapboxgl.Map({
-    container: 'map', // container ID
-    style: 'mapbox://styles/mapbox/satellite-v9', // style URL
-    center: [-100,50], // starting position [lng, lat]
-    zoom: 2, // starting zoom
-    projection: 'globe' // display the map as a 3D globe
+const map = new mapboxgl.Map({
+  container: 'map', // container ID
+  style: 'mapbox://styles/mapbox/dark-v10', // style URL
+  center: [-100, 50], // starting position [lng, lat]
+  zoom: 4, // starting zoom
+  projection: 'globe' // display the map as a 3D globe
 
 
 
-  });
-  map.on('style.load', () => {
-    map.setFog({}); // Set the default atmosphere style
-  });
+});
+map.on('style.load', () => {
+  map.setFog({'space-color': '#D2D9D9'}); // Set the default atmosphere style
+});
 
 
 
@@ -61,10 +61,19 @@ map.on('click', function (e) {
       weatherDescription = weatherData.weather[0].description;
       icon = weatherData.weather[0].icon;
       location = weatherData.name
-      imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
       new mapboxgl.Popup()
         .setLngLat(coords)
-        .setHTML(`<img src=${imageURL}></img><br /><h3>${location}</h3><p>Currently there is ${weatherDescription} with a temperature of ${temp} degrees celsius.</p>`)
+        .setHTML(`
+          <h3>${location}</h3>
+          <div class="popup-header">
+          <div style='width: 72px; height: 72px; margin-right: 12px;'>${getIcon(icon)}</div>
+            <div>
+              <div class="popup-temp">${temp.toFixed()}<span style="font-size: 16px; color: lightgrey; display: inline-block; transform: translateY(-11px)">&#176;C</span></div>  
+              <div class="popup-description">${weatherDescription}</div>
+            </div>
+          </div>
+          <p>Currently there is ${weatherDescription} with a temperature of ${temp.toFixed(1)} C</p>
+        `)
         .addTo(map);
     });
 
@@ -78,4 +87,52 @@ for (const input of inputs) {
     const layerId = layer.target.id;
     map.setStyle('mapbox://styles/mapbox/' + layerId);
   };
+}
+
+
+function getIcon(id) {
+  switch (id) {
+    case '01d':
+      return `<img src="../icons/clear-day.svg" />`
+    case '01n':
+      return `<img src="../icons/clear-night.svg" />`
+
+    case '02d':
+      return `<img src="../icons/partly-cloudy-day.svg" />`
+    case '02n':
+      return `<img src="../icons/partly-cloudy-night.svg" />`
+
+    case '03d':
+      return `<img src="../icons/overcast-day.svg" />`
+    case '03n':
+      return `<img src="../icons/overcast-night.svg" />`
+
+    case '04d':
+    case '04n':
+      return `<img src="../icons/overcast.svg" />`
+
+    case '09d':
+      return `<img src="../icons/partly-cloudy-day-drizzle.svg" />`
+    case '09n':
+      return `<img src="../icons/partly-cloudy-night-drizzle.svg" />`
+
+    case '10d':
+    case '10n':
+      return `<img src="../icons/rain.svg" />`
+
+    case '11d':
+    case '11n':
+      return `<img src="../icons/thunderstorms.svg" />`
+
+    case '13d':
+    case '13n':
+      return `<img src="../icons/snow.svg" />`
+
+    case '50d':
+    case '50n':
+      return `<img src="../icons/fog.svg" />`
+
+    default:
+      new Error("You broke it!")
+  }
 }
